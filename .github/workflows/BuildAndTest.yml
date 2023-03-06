@@ -18,4 +18,5 @@ jobs:
         working-directory: ./TestGithubActions
         run: dotnet build
       - name: test
+        working-directory: ./TestGithubActions
         run: dotnet test
