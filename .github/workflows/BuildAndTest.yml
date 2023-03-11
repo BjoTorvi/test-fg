@@ -52,7 +52,7 @@ jobs:
       - name: Vis hemmelighet
         run: echo "Dont tell anybody, but ${{secrets.hemmelig}}"
       - name: Vis funfact
-        run: echo "Did you know that ${{variables.funfact}}"
+        run: echo "Did you know that $funfact"
       - name: Run the program
         env:
           env_secret: ${{secrets.hemmelig}}
