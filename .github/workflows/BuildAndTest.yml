@@ -19,16 +19,28 @@ jobs:
       - name: build
         working-directory: ./TestGithubActions
         run: dotnet build
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v3.0.3
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.1.1
         with:
-          dotnet-version: 3.1
+          # Artifact name
+          name: helloworld
+          # Destination path
+          path: public/
       - name: test
         working-directory: ./TestGithubActions
         run: dotnet test
+
+  runprogram:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2.1.1
+        with:
+          # Artifact name
+          name: helloworld
+          # Destination path
+          path: public
+      - name: Run the program
+        run: ls
