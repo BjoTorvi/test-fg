@@ -25,7 +25,9 @@ jobs:
           # Artifact name
           name: helloworld
           # Destination path
-          path: public/
+          path: ./TestGithubActions/bin
+      - name: Run ls ./
+        run: ls
       - name: test
         working-directory: ./TestGithubActions
         run: dotnet test
