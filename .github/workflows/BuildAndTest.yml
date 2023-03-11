@@ -25,8 +25,8 @@ jobs:
           # Artifact name
           name: helloworld
           # Destination path
-          path: ./TestGithubActions/bin
-      - name: Run ls ./
+          path: ./TestGithubActions/TestGithubActions/bin/Debug/netcoreapp3.1/
+      - name: Run ls -R
         run: ls
       - name: test
         working-directory: ./TestGithubActions
@@ -43,6 +43,8 @@ jobs:
           # Artifact name
           name: helloworld
           # Destination path
-          path: public
+          path: runtheprogram
+      - name: list files
+        run: ls -R
       - name: Run the program
-        run: ls
+        run: ./runtheprogram/TestGithubActions.exe
