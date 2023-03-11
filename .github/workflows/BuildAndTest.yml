@@ -50,10 +50,10 @@ jobs:
       - name: list files
         run: ls -R
       - name: Vis hemmelighet
-        run: echo "Dont tell anybody, but ${{secret.hemmelig}}"
+        run: echo "Dont tell anybody, but ${{secrets.hemmelig}}"
       - name: Vis funfact
         run: echo "Did you know that ${{variables.funfact}}"
       - name: Run the program
         env:
-          env_secret: ${{secret.hemmelig}}
+          env_secret: ${{secrets.hemmelig}}
         run: dotnet ./runtheprogram/TestGithubActions.dll
