@@ -19,6 +19,8 @@ jobs:
       - name: build
         working-directory: ./TestGithubActions
         run: dotnet build
+      - name: Run ls
+        run: ls -R
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.1.1
         with:
@@ -26,8 +28,6 @@ jobs:
           name: helloworld
           # Destination path
           path: ./TestGithubActions/TestGithubActions/bin/Debug/netcoreapp3.1/
-      - name: Run ls -R
-        run: ls
       - name: test
         working-directory: ./TestGithubActions
         run: dotnet test
@@ -36,7 +36,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v3.0.3
+        with:
+          dotnet-version: 3.1
       - name: Download a Build Artifact
         uses: actions/download-artifact@v2.1.1
         with:
@@ -47,4 +50,4 @@ jobs:
       - name: list files
         run: ls -R
       - name: Run the program
-        run: ./runtheprogram/TestGithubActions.exe
+        run: dotnet ./runtheprogram/TestGithubActions.dll
