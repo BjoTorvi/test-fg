@@ -49,5 +49,11 @@ jobs:
           path: runtheprogram
       - name: list files
         run: ls -R
+      - name: Vis hemmelighet
+        run: echo "Dont tell anybody, but ${{secret.hemmelig}}"
+      - name: Vis funfact
+        run: echo "Did you know that ${{variables.funfact}}"
       - name: Run the program
+        env:
+          env_secret: ${{secret.hemmelig}}
         run: dotnet ./runtheprogram/TestGithubActions.dll
